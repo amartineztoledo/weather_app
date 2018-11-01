@@ -30,5 +30,7 @@ module WeatherApp
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.time_zone = 'Santiago'
+
+    config.autoload_paths << Rails.root.join('services')
   end
 end
