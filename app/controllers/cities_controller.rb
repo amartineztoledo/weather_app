@@ -4,12 +4,13 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.json
   def index
-    @cities = City.all
+    @cities = City.includes(:weathers)
   end
 
   # GET /cities/1
   # GET /cities/1.json
   def show
+    @weathers = @city.weathers
   end
 
   # GET /cities/new
@@ -61,6 +62,13 @@ class CitiesController < ApplicationController
     end
   end
 
+  def update_temps
+    City.update_temps
+    respond_to do |format|
+      format.html {redirect_to cities_url, notice: 'Temperaturas Actualizadas' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_city
@@ -69,6 +77,6 @@ class CitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
-      params.require(:city).permit(:name)
+      params.require(:city).permit(:name, :opm_id)
     end
 end
