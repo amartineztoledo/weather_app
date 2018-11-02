@@ -1,9 +1,43 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Ciudad:</strong>
   <%= @city.name %>
 </p>
 
-<%= link_to 'Edit', edit_city_path(@city) %> |
-<%= link_to 'Back', cities_path %>
+<div class="table-responsive">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">Temperatura</th>
+      <th scope="col" class="text-center">Fecha de consulta</th>
+      <th scole="col" class="text-center"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weathers.each do |weather| %>
+      <tr>
+        <td class="text-center"><%= weather.temp %></td>
+        <td class="text-center"><%= weather.created_at %></td>
+        <td class="text-center"><%= link_to edit_city_weather_path(@city,weather), class: "btn btn-warning" do %>
+              <%= fa_icon "pencil"%>
+            <% end%>
+            <%= link_to [@city,weather], method: :delete, class: "btn btn-danger", data: { confirm: '¿Seguro?' } do %>
+              <%= fa_icon "times"%>
+            <% end%> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+<%= link_to cities_path, class: "btn btn-info" do %>
+    <%= fa_icon "arrow-left"%> Volver
+<% end %>
+
+
+<%= link_to new_city_weather_path(@city), class: "btn btn-success" do %>
+    <%= fa_icon "plus"%> Añadir temperatura
+<% end %>

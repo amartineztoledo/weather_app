@@ -15,6 +15,8 @@ cities = [
 ]
 
 cities.each do |city_name|
-    City.create(name: city_name)
+    #get id used by opm and store in db
+    opm_id = OpmApi.get_opm_id(city_name)
+    City.create(name: city_name, opm_id: opm_id)
 end
 

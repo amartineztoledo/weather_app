@@ -1,27 +1,31 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Cities</h1>
-
-<table>
+<%= link_to update_temps_cities_path, class: "btn btn-info" do %>
+              <%= fa_icon "repeat"%> Actualizar temperaturas
+<% end %>
+<div class="table-responsive">
+  <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th scope="col" class="text-center">Ciudad</th>
+      <th scope="col" class="text-center">Temperatura</th>
+      <th scope="col" class="text-center">Acciones</th>
     </tr>
   </thead>
-
   <tbody>
     <% @cities.each do |city| %>
       <tr>
-        <td><%= city.name %></td>
-        <td><%= link_to 'Show', city %></td>
-        <td><%= link_to 'Edit', edit_city_path(city) %></td>
-        <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-center"><%= city.name %></td>
+        <td class="text-center"><%= city.weathers.last&.temp || "No hay datos" %></td>
+        <td class="text-center"><%= link_to city, class: "btn btn-info" do %>
+              <%= fa_icon "eye"%> Ver mas
+            <% end %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
-<%= link_to 'New City', new_city_path %>
+<%# link_to 'New City', new_city_path %>
+
