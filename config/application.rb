@@ -32,5 +32,6 @@ module WeatherApp
     config.time_zone = 'Santiago'
 
     config.autoload_paths << Rails.root.join('services')
+    config.i18n.default_locale = :es
   end
 end

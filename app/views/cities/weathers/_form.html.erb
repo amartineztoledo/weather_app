@@ -1,22 +1,14 @@
-<%= form_with(model: weather, url: [@city,@weather]) do |form| %>
-  <% if weather.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(weather.errors.count, "error") %> prohibited this weather from being saved:</h2>
+<%= simple_form_for([@city,@weather], html: { class: 'form-inline' }) do |f| %>
 
-      <ul>
-      <% weather.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :temp %>
-    <%= form.text_field :temp %>
+  <div class="form-group mb-2">
+    <%= f.input :temp, label: false %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group mx-sm-3 mb-2">
+    <%= f.button :button, class: "btn btn-outline-success" do %>
+      <%= fa_icon "check" %>
+    <% end %>
+    <%=f.submit%>
   </div>
+  
+  
 <% end %>

@@ -3,8 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 
 ruby '2.5.0'
-
+# Gem for pagination
+gem 'kaminari'
+# simple form
+gem 'simple_form'
+# Icons
 gem "font-awesome-rails"
+# HTTP cliente library
 gem 'faraday'
 #JQuery
 gem 'jquery-rails'

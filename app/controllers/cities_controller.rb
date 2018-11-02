@@ -10,7 +10,7 @@ class CitiesController < ApplicationController
   # GET /cities/1
   # GET /cities/1.json
   def show
-    @weathers = @city.weathers
+    @weathers = @city.weathers.page params[:page]
   end
 
   # GET /cities/new
@@ -65,7 +65,7 @@ class CitiesController < ApplicationController
   def update_temps
     City.update_temps
     respond_to do |format|
-      format.html {redirect_to cities_url, notice: 'Temperaturas Actualizadas' }
+      format.html {redirect_to cities_url, notice: 'Temperaturas Actualizadas'}
     end
   end
 

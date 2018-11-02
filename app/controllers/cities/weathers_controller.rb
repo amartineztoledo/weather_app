@@ -5,10 +5,12 @@ class Cities::WeathersController < ApplicationController
     # GET /weathers/new
     def new
       @weather = Weather.new
+      @button_text = "Crear"
     end
   
     # GET /weathers/1/edit
     def edit
+      @button_text = "Actualizar"
     end
   
     # POST /weathers
@@ -19,7 +21,7 @@ class Cities::WeathersController < ApplicationController
   
       respond_to do |format|
         if @weather.save
-          format.html { redirect_to @city, notice: 'Weather was successfully created.' }
+          format.html { redirect_to @city, notice: 'Weather was successfully created.'}
           format.json { render :show, status: :created, location: @city }
         else
           format.html { render :new }
