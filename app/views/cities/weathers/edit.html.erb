@@ -1,0 +1,8 @@
+<h1>Editing Weather</h1>
+
+<%= render 'form', weather: @weather %>
+
+<%# link_to 'Show', @weather %>
+<%= link_to city_path(@city), class: "btn btn-info" do %>
+    <%= fa_icon "arrow-left"%> Volver
+<% end %>

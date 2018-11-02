@@ -1,4 +1,4 @@
-<%= form_with(model: weather, local: true) do |form| %>
+<%= form_with(model: weather, url: [@city,@weather]) do |form| %>
   <% if weather.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(weather.errors.count, "error") %> prohibited this weather from being saved:</h2>
@@ -14,11 +14,6 @@
   <div class="field">
     <%= form.label :temp %>
     <%= form.text_field :temp %>
-  </div>
-
-  <div class="field">
-    <%= form.label :city_id %>
-    <%= form.text_field :city_id %>
   </div>
 
   <div class="actions">
