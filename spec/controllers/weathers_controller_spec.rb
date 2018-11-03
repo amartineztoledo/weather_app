@@ -23,17 +23,17 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe WeathersController, type: :controller do
+RSpec.describe Cities::WeathersController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Weather. As you add validations to Weather, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {temp: 1, city_id: 1}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {temp: -1000}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -41,25 +41,9 @@ RSpec.describe WeathersController, type: :controller do
   # WeathersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "returns a success response" do
-      Weather.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET #show" do
-    it "returns a success response" do
-      weather = Weather.create! valid_attributes
-      get :show, params: {id: weather.to_param}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {city_id: 1}, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -67,7 +51,7 @@ RSpec.describe WeathersController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       weather = Weather.create! valid_attributes
-      get :edit, params: {id: weather.to_param}, session: valid_session
+      get :edit, params: {id: weather.to_param, city_id: 1}, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -76,19 +60,19 @@ RSpec.describe WeathersController, type: :controller do
     context "with valid params" do
       it "creates a new Weather" do
         expect {
-          post :create, params: {weather: valid_attributes}, session: valid_session
+          post :create, params: {weather: valid_attributes, city_id: 1}, session: valid_session
         }.to change(Weather, :count).by(1)
       end
 
-      it "redirects to the created weather" do
-        post :create, params: {weather: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Weather.last)
+      it "redirects to city show" do
+        post :create, params: {weather: valid_attributes, city_id: 1}, session: valid_session
+        expect(response).to redirect_to(city_path(id: 1))
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {weather: invalid_attributes}, session: valid_session
+        post :create, params: {weather: invalid_attributes, city_id: 1}, session: valid_session
         expect(response).to be_successful
       end
     end
@@ -97,27 +81,27 @@ RSpec.describe WeathersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {temp: 2}
       }
 
       it "updates the requested weather" do
         weather = Weather.create! valid_attributes
-        put :update, params: {id: weather.to_param, weather: new_attributes}, session: valid_session
+        put :update, params: {id: weather.to_param, weather: new_attributes, city_id: 1}, session: valid_session
         weather.reload
-        skip("Add assertions for updated state")
+        expect(weather.temp).to eq(2)
       end
 
-      it "redirects to the weather" do
+      it "redirects to the city show" do
         weather = Weather.create! valid_attributes
-        put :update, params: {id: weather.to_param, weather: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(weather)
+        put :update, params: {id: weather.to_param, weather: valid_attributes, city_id: 1}, session: valid_session
+        expect(response).to redirect_to(city_path(id: 1))
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         weather = Weather.create! valid_attributes
-        put :update, params: {id: weather.to_param, weather: invalid_attributes}, session: valid_session
+        put :update, params: {id: weather.to_param, weather: invalid_attributes, city_id: 1}, session: valid_session
         expect(response).to be_successful
       end
     end
@@ -127,14 +111,14 @@ RSpec.describe WeathersController, type: :controller do
     it "destroys the requested weather" do
       weather = Weather.create! valid_attributes
       expect {
-        delete :destroy, params: {id: weather.to_param}, session: valid_session
+        delete :destroy, params: {id: weather.to_param, city_id: 1}, session: valid_session
       }.to change(Weather, :count).by(-1)
     end
 
-    it "redirects to the weathers list" do
+    it "redirects to the city show" do
       weather = Weather.create! valid_attributes
-      delete :destroy, params: {id: weather.to_param}, session: valid_session
-      expect(response).to redirect_to(weathers_url)
+      delete :destroy, params: {id: weather.to_param, city_id: 1}, session: valid_session
+      expect(response).to redirect_to(city_path(id: 1))
     end
   end
 

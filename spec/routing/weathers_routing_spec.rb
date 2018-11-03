@@ -1,38 +1,38 @@
 require "rails_helper"
 
-RSpec.describe WeathersController, type: :routing do
+RSpec.describe Cities::WeathersController, type: :routing do
   describe "routing" do
-    it "routes to #index" do
-      expect(:get => "/weathers").to route_to("weathers#index")
+    it "not routes to #index" do
+      expect(:get => "/cities/1/weathers").to_not route_to("cities/weathers#index")
     end
 
     it "routes to #new" do
-      expect(:get => "/weathers/new").to route_to("weathers#new")
+      expect(:get => "/cities/1/weathers/new").to route_to("cities/weathers#new", :city_id => "1")
     end
 
-    it "routes to #show" do
-      expect(:get => "/weathers/1").to route_to("weathers#show", :id => "1")
+    it "not routes to #show" do
+      expect(:get => "/cities/1/weathers/1").to_not route_to("cities/weathers#show", :id => "1", :city_id => "1")
     end
 
     it "routes to #edit" do
-      expect(:get => "/weathers/1/edit").to route_to("weathers#edit", :id => "1")
+      expect(:get => "/cities/1/weathers/1/edit").to route_to("cities/weathers#edit", :id => "1", :city_id => "1")
     end
 
 
     it "routes to #create" do
-      expect(:post => "/weathers").to route_to("weathers#create")
+      expect(:post => "/cities/1/weathers").to route_to("cities/weathers#create", :city_id => "1")
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/weathers/1").to route_to("weathers#update", :id => "1")
+      expect(:put => "/cities/1/weathers/1").to route_to("cities/weathers#update", :id => "1", :city_id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/weathers/1").to route_to("weathers#update", :id => "1")
+      expect(:patch => "/cities/1/weathers/1").to route_to("cities/weathers#update", :id => "1", :city_id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/weathers/1").to route_to("weathers#destroy", :id => "1")
+      expect(:delete => "/cities/1/weathers/1").to route_to("cities/weathers#destroy", :id => "1", :city_id => "1")
     end
   end
 end

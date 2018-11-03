@@ -1,10 +1,4 @@
 
-<% if notice %>
-  <div class="alert alert-success" role="alert">
-    <%= notice %>
-  </div>
-<% end%>
-
 <%= link_to update_temps_cities_path, class: "btn btn-dark" do %>
               <%= fa_icon "repeat"%> Actualizar temperaturas
 <% end %>
@@ -13,7 +7,7 @@
   <thead>
     <tr>
       <th scope="col" class="text-center">Ciudad</th>
-      <th scope="col" class="text-center">Temperatura</th>
+      <th scope="col" class="text-center">Temperatura (°C) </th>
       <th scope="col" class="text-center">Acciones</th>
     </tr>
   </thead>
@@ -23,7 +17,7 @@
         <td class="text-center"><%= city.name %></td>
         <td class="text-center"><%= city.weathers.last&.temp || "No hay datos" %></td>
         <td class="text-center"><%= link_to city, class: "btn btn-info" do %>
-              <%= fa_icon "eye"%> Ver mas
+              <%= fa_icon "eye"%> Ver más
             <% end %></td>
       </tr>
     <% end %>

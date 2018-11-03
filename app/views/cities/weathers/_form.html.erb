@@ -1,13 +1,13 @@
-<%= simple_form_for([@city,@weather], html: { class: 'form-inline' }) do |f| %>
+<%= simple_form_for([@city,@weather]) do |f| %>
 
   <div class="form-group mb-2">
     <%= f.input :temp, label: false %>
   </div>
-  <div class="form-group mx-sm-3 mb-2">
+  
+  <div class="form-group mb-2">
     <%= f.button :button, class: "btn btn-outline-success" do %>
       <%= fa_icon "check" %>
     <% end %>
-    <%=f.submit%>
   </div>
   
   

@@ -21,7 +21,7 @@ class Cities::WeathersController < ApplicationController
   
       respond_to do |format|
         if @weather.save
-          format.html { redirect_to @city, notice: 'Weather was successfully created.'}
+          format.html { redirect_to @city, notice: 'Temperatura añadida correctamente.'}
           format.json { render :show, status: :created, location: @city }
         else
           format.html { render :new }
@@ -35,7 +35,7 @@ class Cities::WeathersController < ApplicationController
     def update
       respond_to do |format|
         if @weather.update(weather_params)
-          format.html { redirect_to @city, notice: 'Weather was successfully updated.' }
+          format.html { redirect_to @city, notice: 'Temperatura actualizada correctamente.' }
           format.json { render :show, status: :ok, location: @city }
         else
           format.html { render :edit }
@@ -49,7 +49,7 @@ class Cities::WeathersController < ApplicationController
     def destroy
       @weather.destroy
       respond_to do |format|
-        format.html { redirect_to weathers_url, notice: 'Weather was successfully destroyed.' }
+        format.html { redirect_to @city, notice: 'Temperatura eliminada correctamente.' }
         format.json { head :no_content }
       end
     end

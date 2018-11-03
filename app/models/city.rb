@@ -1,5 +1,6 @@
 class City < ApplicationRecord
     has_many :weathers
+    validates :name, presence: true
     accepts_nested_attributes_for :weathers
 
     def self.update_temps
