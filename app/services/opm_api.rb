@@ -1,7 +1,7 @@
 #services for openweathermap.org API
 class OpmApi
     BASE = 'http://api.openweathermap.org/data/2.5'
-    APPID = "4677e74e2adf88a8caa0f4daa7417f79"
+    APPID = ENV['APPID']
 
     def self.connection
         Faraday.new(url: BASE)
@@ -32,7 +32,7 @@ class OpmApi
         several_cities_data = (con.get 'group', {:id => opm_ids, :appid => APPID, :units => "metric"}).body
         data_hash = JSON.parse several_cities_data
         cities_temps = Hash.new
-        data_hash["list"].each do |data|
+        data_hash["list"]&.each do |data|
             opm_id = data["id"]
             temp = data["main"]["temp"]
             cities_temps[opm_id] = temp

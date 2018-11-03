@@ -1,24 +1,25 @@
-# README
+Small web app that use openweathermap.org API to retrieve current T°.
+## Requeriments
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby 2.5.0
+* bundler gem
 
-Things you may want to cover:
+## Get Started:
+* Clone repo
+`(git clone https://github.com/amartineztoledo/weather_app.git`
+* Move to project folder and install Gems
+`cd weather_app`
+`bundle`
+* Create database, run migrations and seed basic data
+`rake db:create`
+`rake db:migrate`
+`rake db:seed`
+* Run server
+`rails s`
 
-* Ruby version
+For simplicity, master branch use SQLite DB.
+Heroku branch use PostgresSQL DB.
 
-* System dependencies
+## Run tests with
+`rspec spec`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

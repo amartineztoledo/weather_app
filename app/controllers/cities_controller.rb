@@ -10,7 +10,7 @@ class CitiesController < ApplicationController
   # GET /cities/1
   # GET /cities/1.json
   def show
-    @weathers = @city.weathers.page params[:page]
+    @weathers = @city.weathers.order(created_at: :desc).page params[:page]
   end
 
   # GET /cities/new
