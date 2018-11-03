@@ -15,6 +15,6 @@ cities = [
 ]
 
 cities.each do |city_name|
-    City.create(name: city_name, opm_id: opm_id)
+    City.create(name: city_name)
 end
 
