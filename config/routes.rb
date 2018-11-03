@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :cities do
+  resources :cities, :only => [:index, :show] do
     scope module: :cities do
       resources :weathers, :except => [:index, :show] 
     end
