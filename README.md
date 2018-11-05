@@ -20,6 +20,7 @@ Small web app that use openweathermap.org API to retrieve current T°.
 For simplicity, master branch use SQLite DB.
 Heroku branch use PostgresSQL DB.
 
-## Run tests with
+## Run tests
 `rspec spec`
 
+Actions and Routes for Cities (new, create, delete, destroy, edit, update) has been deleted. You can test this with Rspec.
